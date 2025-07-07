@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Download, Upload, Link, Edit3 } from 'lucide-react';
+import { Download, Upload, Link, Edit3, Info } from 'lucide-react';
 
 interface DownloadFormProps {
   onDownload: (url: string, rename?: string) => void;
@@ -15,7 +15,7 @@ const DownloadForm: React.FC<DownloadFormProps> = ({ onDownload, onCookiesUpload
   const [urlError, setUrlError] = useState('');
 
   const validateYouTubeUrl = (url: string) => {
-    const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/)/;
+    const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/|m\.youtube\.com\/watch)/;
     return youtubeRegex.test(url);
   };
 
@@ -142,6 +142,21 @@ const DownloadForm: React.FC<DownloadFormProps> = ({ onDownload, onCookiesUpload
             }`}>
               {cookiesUploaded ? 'Cookies uploaded successfully' : 'Drop cookies.txt here or click to upload'}
             </p>
+          </div>
+          
+          <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="flex items-start">
+              <Info className="w-4 h-4 text-blue-500 mt-0.5 mr-2 flex-shrink-0" />
+              <div className="text-sm text-blue-700">
+                <p className="font-medium mb-1">When do you need cookies.txt?</p>
+                <ul className="text-xs space-y-1">
+                  <li>• Private or unlisted videos</li>
+                  <li>• Age-restricted content</li>
+                  <li>• Region-locked videos</li>
+                  <li>• Videos requiring sign-in</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 
